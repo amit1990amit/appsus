@@ -31,12 +31,6 @@ function addNote(note){
     return Promise.resolve();
 }
 
-// function addNote(data,type){
-//     let newNote = createNote(data,type);
-//     gNotes.unshift(newNote);
-//     storageService.saveToStorage(NOTE_KEY,gNotes)
-//     return Promise.resolve(notes);
-// }
 
 function removeNote(noteId){
     var idx = gNotes.findIndex(note => note.id === noteId);
@@ -54,13 +48,19 @@ function getNoteById(noteId) {
 }
 
 function createNote(data,type){
-    return {
+    let note =  {
         id: makeId(7),
         data: data,
         color: 'white',
         isPinned: false,
         type: type
     }
+    if(note.type === 'video-note'){
+        let videoId =  note.data.split('=')[1];
+        note.data = 'https://www.youtube.com/embed/' + videoId;
+    }
+
+    return note;
 }
 
 let gNotes = [

@@ -2,6 +2,7 @@
 
 import textNote from './text-note.cmp.js'
 import imgNote from './img-note.cmp.js'
+import videoNote from './video-note.cmp.js'
 import {KeepService} from '../services/keep-service.js'
 
 export default {
@@ -18,7 +19,8 @@ export default {
     `,
     components:{
         textNote,
-        imgNote
+        imgNote,
+        videoNote
     },
     methods:{
         onRemoveNote(){

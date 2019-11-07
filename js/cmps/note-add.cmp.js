@@ -8,6 +8,7 @@ export default {
             <input type="text" placeholder="enter txt" v-model="note.data" @keyup.enter="addNote"/>
             <button @click="changeNoteType('text-note')">text</button>
             <button @click="changeNoteType('img-note')">img</button>
+            <button @click="changeNoteType('video-note')">video</button>
         </section>
     `,
     data() {
