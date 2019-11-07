@@ -23,7 +23,7 @@ export default {
                         :key="currNote.id" 
                         @removeNote="onRemoveNote(currNote.id)"
                         @click.native="onSelectNote(currNote.id)" 
-                        :data="currNote.data" />
+                        :note="currNote" />
             <!-- <button @click="onRemoveNote">X</button> -->
         </section>
     `,

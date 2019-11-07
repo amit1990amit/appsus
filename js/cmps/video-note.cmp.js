@@ -2,10 +2,10 @@
 
 export default {
     name: 'img-note',
-    props: ['data'],
+    props: ['note'],
     template: `
         <section class="img-note">
-            <iframe :src="data" ></iframe>
+            <iframe :src="note.data" ></iframe>
             <button class="remove-btn" @click="$emit('removeNote')">X</button>
         </section>
     `,

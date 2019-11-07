@@ -2,11 +2,12 @@
 
 export default {
     name: 'text-note',
-    props: ['data'],
+    props: ['note'],
     template: `
         <section class="text-note">
-            <h2>{{data}}</h2>
+            <h2>{{note.data}}</h2>
             <button class="remove-btn" @click="$emit('removeNote')">X</button>
+            <button >edit</button>
         </section>
     `,
 }

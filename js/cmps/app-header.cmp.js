@@ -8,8 +8,8 @@ export default {
             <router-link class="logo" exact to="/">APPSUS</router-link>
             <button class="app-navigation-btn" :class="classObject" @click="toggleNav"> 
                 <img src="imgs/menu2-icon.png"/>
-                <nav class="flex wrap">
-                    <router-link exact to="/email" class="fa fa-fw fa-envelope"></router-link>
+                <nav  class="app-model flex wrap">
+                    <router-link exact to="/email" class="fa fa-fw fa-envelope">email</router-link>
                     <router-link exact to="/keep">keep</router-link>
                 </nav>
             </button>

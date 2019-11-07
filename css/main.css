@@ -59,6 +59,12 @@ h6 {
 
 /*---main----*/
 
+.app-model{
+    position: fixed;
+    top: 50px;
+
+}
+
 .app-header-container {
     padding: 10px;
     /* position: absolute; */
