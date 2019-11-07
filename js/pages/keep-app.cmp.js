@@ -7,7 +7,7 @@ import noteAdd from '../cmps/note-add.cmp.js'
 export default {
     name: 'keep-app',
     template: `
-        <section class="keep-app-container">
+        <section class="keep-app-container container">
         <note-add @added="addNote"></note-add>
         <h2>pined notes</h2>
             <note-list :notes="notesToShow"></note-list>

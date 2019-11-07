@@ -10,10 +10,7 @@ export default {
     props: ['note'],
     template:`
         <div class="note-preview-container" :style="{'background-color': note.color}">
-            <!-- <h2>{{note.data}}</h2> -->
-            <div>
-                <component :is="note.type"  :data="note.data"></component>
-            </div>
+                <component :is="note.type"  :data="note.data" />
             <button @click="onRemoveNote">X</button>
         </div>
     `,

@@ -1,20 +1,30 @@
 'use strict'
 
 import notePreview from './note-preview.cmp.js'
+import textNote from './text-note.cmp.js'
+import imgNote from './img-note.cmp.js'
+import videoNote from './video-note.cmp.js'
+
+import {KeepService} from '../services/keep-service.js'
 
 
 export default {
     name: 'note-list',
     props: ['notes'],
     template:`
-        <section>
-            <div class="note-list-container">
-                <div v-for="currNote in notes">
-                    <note-preview :note="currNote" @click.native="onSelectNote(currNote.id)" :key="currNote.id"></note-preview>
-                
-                </div>
-                
-            </div >
+        <section class="note-list-container">
+            <!-- <note-preview v-for="currNote in notes" 
+                            :note="currNote" 
+                            @click.native="onSelectNote(currNote.id)" 
+                            :key="currNote.id" /> -->
+            <component v-for="currNote in notes" 
+                        class="note-preview-container" :style="{'background-color': currNote.color}"
+                        :is="currNote.type"
+                        :key="currNote.id" 
+                        @removeNote="onRemoveNote(currNote.id)"
+                        @click.native="onSelectNote(currNote.id)" 
+                        :data="currNote.data" />
+            <!-- <button @click="onRemoveNote">X</button> -->
         </section>
     `,
     // data() {
@@ -27,10 +37,17 @@ export default {
             console.log(noteId)
             // this.selectedBook = bookId;
             // this.$emit('selected', this.selectedBook);
+        },
+        onRemoveNote(noteId){
+            console.log('noteId', noteId)
+            KeepService.removeNote(noteId)
         }
     },
     components:{
-        notePreview
+        notePreview,
+        textNote,
+        imgNote,
+        videoNote
     }
 }
 

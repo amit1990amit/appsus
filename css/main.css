@@ -12,7 +12,16 @@ html {
 body {
     margin: 0;
     padding: 0;
+    background-color: #e3e3e3;
 }
+
+img, iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
 
 a {
     text-decoration: none;
@@ -28,18 +37,39 @@ h6 {
 }
 
 
+/* layout */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+@media(max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }   
+}
+
+@media(max-width: 960px) {
+    .container {
+        max-width: 740px;
+    }   
+}
+
 /*---main----*/
 
 .app-header-container {
-    padding: 30px;
-    position: absolute;
+    padding: 10px;
+    /* position: absolute; */
     width: 100%;
+    background-color: white;
 }
 
 .logo {
     font-size: 30px;
     font-weight: bold;
-    color: pink;
+    color:#e5153a;
 }
 
 .app-navigation-btn {
