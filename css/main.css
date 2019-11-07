@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+}
+
+
+/*---base----*/
+
+html {
+    font-family: rawline, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+}
+
+
+/*---main----*/
+
+.app-header-container {
+    padding: 30px;
+    position: absolute;
+    width: 100%;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: pink;
+}
+
+.app-navigation-btn {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.app-navigation-btn img {
+    width: 40px;
+}
+
+.app-navigation-btn:after {
+    content: " ";
+    position: absolute;
+    top: 80%;
+    transform: translate(-50%);
+    /* width: 0; */
+    /* height: 0; */
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #34495e21;
+    transition: 0.3s 0s;
+}
+
+.app-navigation-btn.clicked:after {
+    border-width: 0px;
+    transition: 0.3s 0.2s;
+}
+
+nav {
+    position: absolute;
+    top: calc(84.7% + 10px);
+    transform: translateX(-80%);
+    width: 250px;
+    height: 300px;
+    transition: 0.3s 0.3s;
+    font-size: 0;
+    background: #34495e21;
+}
+
+.app-navigation-btn.clicked nav {
+    height: 0px;
+    transition: 0.3s 0s;
+}
+
+.app-navigation-btn a {
+    width: 70px;
+    height: 70px;
+    font-size: initial;
+    transition: 0.3s 0.1s;
+}
+
+.app-navigation-btn.clicked nav a {
+    font-size: 0;
+    transition: 0.3s 0s;
+}
+
+.home-page-container {
+    background-image: url("/Day40-Sprint3-Appsus/Sprint3-Delivery/Delivery 1 - WED 2000/Appsus/imgs/home-page.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.home-page-container h1 {
+    font-size: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/*----helpers-----*/
+
+
+/*----flex helpers-----*/
+
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.flex.wrap {
+    flex-wrap: wrap;
+}
+
+
+/*----list helpers-----*/
+
+.clean-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
