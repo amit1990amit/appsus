@@ -9,6 +9,7 @@ export default {
             <button @click="changeNoteType('text-note')">text</button>
             <button @click="changeNoteType('img-note')">img</button>
             <button @click="changeNoteType('video-note')">video</button>
+            <button @click="changeNoteType('todo-note')">todo</button>
         </section>
     `,
     data() {
