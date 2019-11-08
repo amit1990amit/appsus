@@ -10,7 +10,8 @@ export const KeepService = {
     getNoteById,
     getNotes,
     addNote,
-    removeNote
+    removeNote,
+    updateNote
 }
 
 function changeNote(){
@@ -69,6 +70,15 @@ function createNote(data,type){
     }
 
     return note;
+}
+
+function updateNote(note) {
+    gNotes = storageService.loadFromStorage(NOTE_KEY);
+    var noteId = note.id
+    var noteIdx = gNotes.findIndex(note => note.id === noteId)
+    gNotes[noteIdx] = note;
+    storageService.saveToStorage(NOTE_KEY, gNotes);
+    return Promise.resolve(gNotes);
 }
 
 let gNotes = [

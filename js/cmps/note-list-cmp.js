@@ -24,10 +24,9 @@ export default {
                         :is="currNote.type"
                         :key="currNote.id" 
                         @removeNote="onRemoveNote(currNote.id)"
-                        @changeColor="onChangeColor(currNote.id)"
+                        @changeColor="onChangeColor(currNote)" 
                         @click.native="onSelectNote(currNote.id)" 
                         :note="currNote" />
-            <!-- <button @click="onRemoveNote">X</button> -->
         </section>
     `,
     // data() {
@@ -45,13 +44,10 @@ export default {
             console.log('noteId', noteId)
             KeepService.removeNote(noteId)
         },
-        onChangeColor(noteId){
-            // KeepService.getNoteById(noteId)
-            //     .then(res => {
-            //         console.log(res)
-            //         res.color = 'red'
-                    
-            //     })
+        onChangeColor(note){
+
+            note.color = 'red'
+            KeepService.updateNote(note)
         }
     },
     components:{
