@@ -9,7 +9,7 @@ import todoNote from './todo-note.cmp.js'
 import {KeepService} from '../services/keep-service.js'
 
 
-
+ 
 export default {
     name: 'note-list',
     props: ['notes'],
@@ -24,6 +24,7 @@ export default {
                         :is="currNote.type"
                         :key="currNote.id" 
                         @removeNote="onRemoveNote(currNote.id)"
+                        @editData="onEditData(currNote)"
                         @changeColor="onChangeColor(currNote)" 
                         @click.native="onSelectNote(currNote.id)" 
                         :note="currNote" />
@@ -45,8 +46,12 @@ export default {
             KeepService.removeNote(noteId)
         },
         onChangeColor(note){
-
-            note.color = 'red'
+            note.color = event.target.value
+            KeepService.updateNote(note)
+        },
+        onEditData(note){
+            console.log(event.target.value)
+            note.data = event.target.value;
             KeepService.updateNote(note)
         }
     },

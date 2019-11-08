@@ -9,7 +9,7 @@ export default {
                 <h3 :class="{ marked: todo.isDone }" @click="toggleIsDone(todo)">{{todo.txt}}</h3> 
             </div>
             <button class="remove-btn" @click="$emit('removeNote')">X</button>
-            <button >edit</button>
+            <input type="text" class="text-input" @keyup.enter="$emit('editData')">
             <input class="color-input" @change="$emit('changeColor')" type="color"/>
         </section>
         

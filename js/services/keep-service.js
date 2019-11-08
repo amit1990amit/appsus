@@ -14,9 +14,6 @@ export const KeepService = {
     updateNote
 }
 
-function changeNote(){
-
-}
 
 function getNotes() {
     var notes = storageService.loadFromStorage(NOTE_KEY)
