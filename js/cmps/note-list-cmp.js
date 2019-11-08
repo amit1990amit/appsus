@@ -4,8 +4,10 @@ import notePreview from './note-preview.cmp.js'
 import textNote from './text-note.cmp.js'
 import imgNote from './img-note.cmp.js'
 import videoNote from './video-note.cmp.js'
+import todoNote from './todo-note.cmp.js'
 
 import {KeepService} from '../services/keep-service.js'
+
 
 
 export default {
@@ -22,6 +24,7 @@ export default {
                         :is="currNote.type"
                         :key="currNote.id" 
                         @removeNote="onRemoveNote(currNote.id)"
+                        @changeColor="onChangeColor(currNote.id)"
                         @click.native="onSelectNote(currNote.id)" 
                         :note="currNote" />
             <!-- <button @click="onRemoveNote">X</button> -->
@@ -41,13 +44,23 @@ export default {
         onRemoveNote(noteId){
             console.log('noteId', noteId)
             KeepService.removeNote(noteId)
+        },
+        onChangeColor(noteId){
+            // KeepService.getNoteById(noteId)
+            //     .then(res => {
+            //         console.log(res)
+            //         res.color = 'red'
+                    
+            //     })
         }
     },
     components:{
         notePreview,
         textNote,
         imgNote,
-        videoNote
+        videoNote,
+        todoNote
+        
     }
 }
 

@@ -8,6 +8,7 @@ export default {
             <h2>{{note.data}}</h2>
             <button class="remove-btn" @click="$emit('removeNote')">X</button>
             <button >edit</button>
+            <input class="color-input" @change="$emit('changeColor')" type="color"/>
         </section>
     `,
 }

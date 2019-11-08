@@ -13,6 +13,9 @@ export const KeepService = {
     removeNote
 }
 
+function changeNote(){
+
+}
 
 function getNotes() {
     var notes = storageService.loadFromStorage(NOTE_KEY)
@@ -55,6 +58,11 @@ function createNote(data,type){
         isPinned: false,
         type: type
     }
+    if (type === 'todo-note') {
+        let todos = note.data.split(', ')
+        let fullTodos = todos.map(todo => ({txt: todo, isDone: false, id: makeId(7)}))
+        note.data = fullTodos
+    }
     if(note.type === 'video-note'){
         let videoId =  note.data.split('=')[1];
         note.data = 'https://www.youtube.com/embed/' + videoId;
@@ -66,5 +74,6 @@ function createNote(data,type){
 let gNotes = [
     createNote('aaaaa','text-note'),
     createNote('bbbbb','text-note'),
-    createNote('https://www.slashfilm.com/wp/wp-content/images/avatar-2-story.jpg','img-note')
+    createNote('https://www.slashfilm.com/wp/wp-content/images/avatar-2-story.jpg','img-note'),
+    createNote('aaa, ssss','todo-note')
 ];
