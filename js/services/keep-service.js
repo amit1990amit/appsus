@@ -11,7 +11,9 @@ export const KeepService = {
     getNotes,
     addNote,
     removeNote,
-    updateNote
+    updateNote,
+    pinNote,
+    unpinNote
 }
 
 
@@ -24,7 +26,7 @@ function getNotes() {
     gNotes = notes;    
     return Promise.resolve(notes);
 }
-
+ 
 function addNote(note){
     let newNote = createNote(note.data,note.type);
     gNotes.unshift(newNote);
@@ -69,14 +71,39 @@ function createNote(data,type){
     return note;
 }
 
+
+
 function updateNote(note) {
     gNotes = storageService.loadFromStorage(NOTE_KEY);
     var noteId = note.id
     var noteIdx = gNotes.findIndex(note => note.id === noteId)
-    gNotes[noteIdx] = note;
+    var newNote = createNote(note.data,note.type)
+    gNotes.splice(noteIdx,1,newNote);
     storageService.saveToStorage(NOTE_KEY, gNotes);
     return Promise.resolve(gNotes);
 }
+
+function pinNote(note){
+    let noteId = note.id;
+    let noteIdx = gNotes.findIndex(note => note.id === noteId);
+    note.prevIdx = noteIdx;
+    gNotes.splice(noteIdx,1);
+    gNotes.unshift(note);
+    note.isPinned = true;
+    storageService.saveToStorage(NOTE_KEY, gNotes)
+    return Promise.resolve(gNotes);
+}
+
+function unpinNote(note){
+    let noteId = note.id;
+    let noteIdx = gNotes.findIndex(note => note.id === noteId);
+    gNotes.splice(noteIdx,1);
+    gNotes.splice(note.prevIdx, 0, note)
+    note.isPinned = false;
+    storageService.saveToStorage(NOTE_KEY, gNotes)
+    return Promise.resolve(gNotes);
+}
+
 
 let gNotes = [
     createNote('aaaaa','text-note'),

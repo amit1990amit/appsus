@@ -26,10 +26,11 @@ export default {
                         @removeNote="onRemoveNote(currNote.id)"
                         @editData="onEditData(currNote)"
                         @changeColor="onChangeColor(currNote)" 
+                        @togglePinNote="onTogglePinNote(currNote)"
                         @click.native="onSelectNote(currNote.id)" 
                         :note="currNote" />
         </section>
-    `,
+    `, 
     // data() {
     //     return {
     //         selectedBook: null
@@ -50,9 +51,18 @@ export default {
             KeepService.updateNote(note)
         },
         onEditData(note){
-            console.log(event.target.value)
             note.data = event.target.value;
             KeepService.updateNote(note)
+            
+        },
+        onTogglePinNote(note){
+            if(note.isPinned === false){
+                KeepService.pinNote(note)
+
+            } else {
+                KeepService.unpinNote(note)
+
+            }
         }
     },
     components:{
@@ -64,4 +74,6 @@ export default {
         
     }
 }
+
+
 
