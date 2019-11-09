@@ -74,34 +74,37 @@ function createNote(data,type){
 
 
 function updateNote(note) {
-    gNotes = storageService.loadFromStorage(NOTE_KEY);
+    let notes = storageService.loadFromStorage(NOTE_KEY);
     var noteId = note.id
     var noteIdx = gNotes.findIndex(note => note.id === noteId)
     var newNote = createNote(note.data,note.type)
-    gNotes.splice(noteIdx,1,newNote);
-    storageService.saveToStorage(NOTE_KEY, gNotes);
-    return Promise.resolve(gNotes);
+    notes.splice(noteIdx,1,newNote);
+    storageService.saveToStorage(NOTE_KEY, notes);
+    return Promise.resolve(notes);
 }
 
 function pinNote(note){
+    let notes = storageService.loadFromStorage(NOTE_KEY)
     let noteId = note.id;
-    let noteIdx = gNotes.findIndex(note => note.id === noteId);
+    let noteIdx = notes.findIndex(note => note.id === noteId);
     note.prevIdx = noteIdx;
-    gNotes.splice(noteIdx,1);
-    gNotes.unshift(note);
+    notes.splice(noteIdx,1);
+    notes.unshift(note);
     note.isPinned = true;
-    storageService.saveToStorage(NOTE_KEY, gNotes)
-    return Promise.resolve(gNotes);
+    storageService.saveToStorage(NOTE_KEY, notes)
+    return Promise.resolve(notes);
 }
 
 function unpinNote(note){
+    let notes = storageService.loadFromStorage(NOTE_KEY)
     let noteId = note.id;
-    let noteIdx = gNotes.findIndex(note => note.id === noteId);
-    gNotes.splice(noteIdx,1);
-    gNotes.splice(note.prevIdx, 0, note)
+    let noteIdx = notes.findIndex(note => note.id === noteId);
+    notes.splice(noteIdx,1);
+    notes.splice(note.prevIdx, 0, note)
     note.isPinned = false;
-    storageService.saveToStorage(NOTE_KEY, gNotes)
-    return Promise.resolve(gNotes);
+    storageService.saveToStorage(NOTE_KEY, notes)
+    return Promise.resolve(notes);
+
 }
 
 

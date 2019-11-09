@@ -52,15 +52,21 @@ export default {
         },
         onEditData(note){
             note.data = event.target.value;
-            KeepService.updateNote(note)
+            KeepService.updateNote(note) 
+            // .then(() => KeepService.getNotes())
+            // .then(notes => this.notes = notes)
             
         },
         onTogglePinNote(note){
             if(note.isPinned === false){
                 KeepService.pinNote(note)
+                // .then(() => KeepService.getNotes())
+                // .then(notes => this.notes = notes)
 
             } else {
                 KeepService.unpinNote(note)
+                // .then(() => KeepService.getNotes())
+                // .then(notes => this.notes = notes)
 
             }
         }
