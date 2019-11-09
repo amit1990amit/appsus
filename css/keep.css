@@ -15,6 +15,19 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+@media(max-width: 960px) {
+    .note-list-container{
+        grid-template-columns:  1fr 1fr;
+    }  
+}
+
+@media(max-width: 550px) {
+    .note-list-container{
+        grid-template-columns:  1fr ;
+    }  
+}
+
+
 .note-preview-container{
     height: 20rem;
     padding: 10px;
