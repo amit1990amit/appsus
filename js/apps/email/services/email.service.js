@@ -105,7 +105,7 @@ var gEmails = [{
         "from": "Dor",
         "subject": "Saying hello",
         "body": "Hi, How are you?",
-        "isRead": false,
+        "isRead": true,
         "sentAt": 1551133930594
     },
     {
