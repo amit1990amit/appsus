@@ -1,15 +1,17 @@
 'use strict';
 
+import toolBar from './toll-bar.cmp.js';
+
 export default {
     name: 'text-note',
     props: ['note'],
     template: `
-        <section class="text-note">
+        <section class="text-note box" :class="{ pinBox: note.isPinned }">
             <h2>{{note.data}}</h2>
-            <button class="remove-btn" @click="$emit('removeNote')">X</button>
-            <input type="text" class="text-input" @keyup.enter="$emit('editData')">
-            <input class="color-input" @change="$emit('changeColor')" type="color"/>
-            <button @click="$emit('togglePinNote')" >pin</button>
+            <tool-bar></tool-bar>
         </section>
     `,
+    components:{
+        toolBar
+    }
 }

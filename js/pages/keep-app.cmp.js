@@ -12,7 +12,7 @@ export default {
         <search-note  @filtered="setFilter"></search-note>
         <note-add @added="addNote"></note-add>
         <h2>pined notes</h2>
-            <note-list :notes="notesToShow"></note-list>
+            <note-list @updateNotes="updateNotes" :notes="notesToShow"></note-list>
         </section>
     `,
     data() {
@@ -33,17 +33,21 @@ export default {
         }
     },
     created() {
-        KeepService.getNotes()
-            .then(notes => this.notes = notes)
+        this.notes = KeepService.getNotes()
+   
     },
     methods: {
         addNote(note) {
-            KeepService.addNote(note)
-                .then(() => KeepService.getNotes())
-                .then(notes => this.notes = notes)
+            KeepService.addNote(note);
+            this.notes = KeepService.getNotes();
+         
         },
         setFilter(filter){
             this.filterBy = filter
+        },
+        updateNotes(note){
+            KeepService.updateNote(note);
+            this.notes = KeepService.getNotes();
         }
     },
     components: {

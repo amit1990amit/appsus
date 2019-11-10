@@ -4,7 +4,7 @@ export default {
     name: 'img-note',
     props: ['note'],
     template: `
-        <section class="img-note">
+        <section class="img-note box " :class="{ pinBox: note.isPinned }">
             <img :src="note.data"/>
             <button class="remove-btn" @click.stop.prevent="$emit('removeNote')">X</button>
             <input type="text" class="text-input" @keyup.enter="$emit('editData')">

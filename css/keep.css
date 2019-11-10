@@ -15,6 +15,14 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+.box{
+    order: 1;
+}
+
+.pinBox{
+    order: 0;
+}
+
 @media(max-width: 960px) {
     .note-list-container{
         grid-template-columns:  1fr 1fr;
@@ -32,6 +40,7 @@
     height: 20rem;
     padding: 10px;
     padding-bottom: 40px;
+    position: relative;
 }
 
 .note-add input {
@@ -66,4 +75,9 @@
 
 .marked {
     text-decoration: line-through;
+}
+
+.toolbar{
+    position: absolute;
+    bottom: 10px;
 }

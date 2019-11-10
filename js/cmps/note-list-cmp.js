@@ -9,7 +9,7 @@ import todoNote from './todo-note.cmp.js'
 import {KeepService} from '../services/keep-service.js'
 
 
- 
+
 export default {
     name: 'note-list',
     props: ['notes'],
@@ -39,8 +39,6 @@ export default {
     methods: {
         onSelectNote(noteId) {
             console.log(noteId)
-            // this.selectedBook = bookId;
-            // this.$emit('selected', this.selectedBook);
         },
         onRemoveNote(noteId){
             console.log('noteId', noteId)
@@ -48,25 +46,21 @@ export default {
         },
         onChangeColor(note){
             note.color = event.target.value
-            KeepService.updateNote(note)
+            this.$emit('updateNotes', note);
         },
         onEditData(note){
             note.data = event.target.value;
-            KeepService.updateNote(note) 
-            // .then(() => KeepService.getNotes())
-            // .then(notes => this.notes = notes)
-            
+            this.$emit('updateNotes', note);
+     
         },
         onTogglePinNote(note){
             if(note.isPinned === false){
-                KeepService.pinNote(note)
-                // .then(() => KeepService.getNotes())
-                // .then(notes => this.notes = notes)
+                KeepService.pinNote(note);
+                
 
             } else {
-                KeepService.unpinNote(note)
-                // .then(() => KeepService.getNotes())
-                // .then(notes => this.notes = notes)
+                KeepService.unpinNote(note);
+                
 
             }
         }

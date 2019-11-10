@@ -1,19 +1,13 @@
 'use strict';
 
 export default {
-    name: 'img-note',
-    props: ['note'],
+    name: 'toolbar',
     template: `
-        <section class="img-note box" :class="{ pinBox: note.isPinned }">
-            <iframe :src="note.data" ></iframe>
+        <section class="toolbar">
             <button class="remove-btn" @click="$emit('removeNote')">X</button>
             <input type="text" class="text-input" @keyup.enter="$emit('editData')">
             <input class="color-input" @change="$emit('changeColor')" type="color"/>
-            <button @click="$emit('togglePinNote')" >pin</button>
+            <button @click="$emit('togglePinNote')" >pin</button>    
         </section>
     `,
 }
-
-
-
-
