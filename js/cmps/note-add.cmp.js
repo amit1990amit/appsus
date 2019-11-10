@@ -8,7 +8,7 @@ export default {
             <input type="text" :placeholder="shownPlaceholder" v-model="note.data" @keyup.enter="addNote"/>
             <button @click="changeNoteType('text-note')">text</button>
             <button @click="changeNoteType('img-note')">img</button>
-            <button @click="changeNoteType('video-note')">video</button>
+            <button @click="changeNoteType('video-note')"><i class="fab fa-youtube"></i></button>
             <button @click="changeNoteType('todo-note')">todo</button>
         </section>
     `,

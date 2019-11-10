@@ -77,6 +77,10 @@
     text-decoration: line-through;
 }
 
+.glow{
+    background-color: cyan;
+}
+
 .toolbar{
     position: absolute;
     bottom: 10px;

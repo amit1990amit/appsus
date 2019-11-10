@@ -7,6 +7,7 @@ import videoNote from './video-note.cmp.js'
 import todoNote from './todo-note.cmp.js'
 
 import {KeepService} from '../services/keep-service.js'
+import {eventBus} from '../services/eventbus-service.js'
 
 
 
@@ -40,30 +41,27 @@ export default {
         onSelectNote(noteId) {
             console.log(noteId)
         },
-        onRemoveNote(noteId){
-            console.log('noteId', noteId)
-            KeepService.removeNote(noteId)
-        },
-        onChangeColor(note){
-            note.color = event.target.value
-            this.$emit('updateNotes', note);
-        },
-        onEditData(note){
-            note.data = event.target.value;
-            this.$emit('updateNotes', note);
+        // onRemoveNote(noteId){
+        //     console.log('noteId', noteId)
+        //     KeepService.removeNote(noteId)
+        // },
+        // onChangeColor(note){
+        //     note.color = event.target.value
+        //     this.$emit('updateNotes', note);
+        // },
+        // onEditData(note){
+        //     note.data = event.target.value;
+        //     this.$emit('updateNotes', note);
      
-        },
-        onTogglePinNote(note){
-            if(note.isPinned === false){
-                KeepService.pinNote(note);
-                
-
-            } else {
-                KeepService.unpinNote(note);
-                
-
-            }
-        }
+        // },
+        // onTogglePinNote(note){
+        //     console.log(note)
+        //     if(note.isPinned === false){
+        //         KeepService.pinNote(note);
+        //     } else {
+        //         KeepService.unpinNote(note);
+        //     }
+        // }
     },
     components:{
         notePreview,
@@ -71,6 +69,31 @@ export default {
         imgNote,
         videoNote,
         todoNote
+        
+    },
+    created(){
+        eventBus.$on('remove', (note) => {
+            console.log("got it!" , note)
+            KeepService.removeNote(note.id)
+        }),
+        eventBus.$on('changeColor', note => {
+            note.color = event.target.value
+            this.$emit('updateNotes', note);
+        }),
+        eventBus.$on('changeData', note => {
+            note.data = event.target.value
+            this.$emit('updateNotes', note);
+        }),
+        eventBus.$on('togglePin', note => {
+            console.log(note)
+            if(note.isPinned === false){
+                KeepService.pinNote(note);
+            } else {
+                KeepService.unpinNote(note);
+            }
+        })
+
+
         
     }
 }
