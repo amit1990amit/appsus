@@ -1,11 +1,11 @@
 'use strict';
 
-// import { storageService } from './storage.service.js'
-// import { makeId } from './util.service.js'
+import { storageService } from '../../../services/storage-service.js'
+import { makeId } from '../../../services/utils-service.js'
 
 export const emailService = {
     getEmails,
-    // getBookById,
+    getEmailById,
     // addReview,
     // removeReview,
     // getSearchedBooks,
@@ -13,24 +13,23 @@ export const emailService = {
     // getNearBooksIds
 }
 
-// const BOOKS_KEY = 'books'
+const EMAILS_KEY = 'emails'
 
 function getEmails() {
-    return gEmails;
-    // var books = storageService.load(BOOKS_KEY)
-    // if (!books) {
-    //     books = gBooks;
-    //     storageService.store(BOOKS_KEY, books)
-    // }
-    // gBooks = books;
-    // return Promise.resolve(books);
+    let emails = storageService.loadFromStorage(EMAILS_KEY)
+    if (!emails) {
+        emails = gEmails;
+        storageService.saveToStorage(EMAILS_KEY, emails)
+    }
+    gEmails = emails;
+    return Promise.resolve(emails);
 }
 
-// function getBookById(bookId) {
-//     gBooks = storageService.load(BOOKS_KEY);
-//     var book = gBooks.find(book => book.id === bookId)
-//     return Promise.resolve(book);
-// }
+function getEmailById(emailId) {
+    gEmails = storageService.loadFromStorage(EMAILS_KEY);
+    let email = gEmails.find(email => email.id === emailId)
+    return Promise.resolve(email);
+}
 
 // function addReview(bookId, review) {
 //     review.id = makeId();
@@ -102,15 +101,17 @@ function getEmails() {
 // }
 
 var gEmails = [{
-        subject: 'wassap with Vue?',
-        body: 'May I',
-        isRead: false,
-        sentAt: 1551133930594
+        "id": "OXeMG8wNskc",
+        "subject": " with Vue?",
+        "body": "May I",
+        "isRead": false,
+        "sentAt": 1551133930594
     },
     {
-        subject: 'sadglkjdslgjasdgl?',
-        body: 'sadgsdagsdag',
-        isRead: false,
-        sentAt: 1551133930596
+        "id": "OXeMG8wNtjk",
+        "subject": "sadglkjdslgjasdgl?",
+        "body": "sadgsdagsdag",
+        "isRead": false,
+        "sentAt": 1551133930596
     }
 ];

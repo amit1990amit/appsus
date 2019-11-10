@@ -1,11 +1,8 @@
 'use strict'
 
-
-
 export const storageService = {
     saveToStorage,
     loadFromStorage
-
 }
 
 function saveToStorage(key, value) {
@@ -14,4 +11,4 @@ function saveToStorage(key, value) {
 
 function loadFromStorage(key) {
     return JSON.parse(localStorage.getItem(key));
-} 
+}

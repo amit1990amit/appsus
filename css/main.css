@@ -15,13 +15,12 @@ body {
     background-color: #e3e3e3;
 }
 
-img, iframe {
+img,
+iframe {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
-
 
 a {
     text-decoration: none;
@@ -48,21 +47,21 @@ h6 {
 @media(max-width: 1200px) {
     .container {
         max-width: 960px;
-    }   
+    }
 }
 
 @media(max-width: 960px) {
     .container {
         max-width: 740px;
-    }   
+    }
 }
+
 
 /*---main----*/
 
-.app-model{
+.app-model {
     position: fixed;
     top: 50px;
-
 }
 
 .app-header-container {
@@ -75,7 +74,7 @@ h6 {
 .logo {
     font-size: 30px;
     font-weight: bold;
-    color:#e5153a;
+    color: #e5153a;
 }
 
 .app-navigation-btn {
@@ -191,6 +190,10 @@ nav {
     background: none;
     outline: none;
     cursor: pointer;
+}
+
+.email-list-container {
+    border: 1px solid black;
 }
 
 
