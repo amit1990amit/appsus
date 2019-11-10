@@ -1,5 +1,5 @@
 'use strict';
-
+ 
 export default {
     name: 'search-note',
     template:`

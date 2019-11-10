@@ -58,7 +58,7 @@ function createNote(note){
     }
 
     note = {...note, ...defaultNote}
-
+    note.copydata = note.data
     if (note.type === 'todo-note') {
         if(typeof(note.data) === typeof("string")){
             let todos = note.data.split(', ');
@@ -96,19 +96,22 @@ function updateNote(note) {
 
 function pinNote(note){
     note.isPinned = true;
+    storageService.saveToStorage(NOTE_KEY, gNotes);
     
 }
 
 function unpinNote(note){
     note.isPinned = false;
+    storageService.saveToStorage(NOTE_KEY, gNotes);
     
 
 }
 
 
 let gNotes = [
-    createNote('aaaaa','text-note'),
-    createNote('bbbbb','text-note'),
-    createNote('https://www.slashfilm.com/wp/wp-content/images/avatar-2-story.jpg','img-note'),
-    createNote('aaa, ssss','todo-note')
+    createNote({data: 'aaaaa',type: 'text-note'}),
+    createNote({data: 'bbbbb',type: 'text-note'}),
+    createNote({data: 'https://www.slashfilm.com/wp/wp-content/images/avatar-2-story.jpg',type: 'img-note'}),
+    createNote({data: 'aaa, ssss',type: 'todo-note'})
 ];
+// {data: 'aaaaa',type: 'text-note'}

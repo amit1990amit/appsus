@@ -66,14 +66,14 @@ h6 {
 }
 
 .app-header-container {
-    padding: 10px;
+    padding: 15px;
     /* position: absolute; */
     width: 100%;
     background-color: white;
 }
 
 .logo {
-    font-size: 30px;
+    font-size: 50px;
     font-weight: bold;
     color:#e5153a;
 }
@@ -86,7 +86,7 @@ h6 {
 }
 
 .app-navigation-btn img {
-    width: 40px;
+    width: 70px;
 }
 
 .app-navigation-btn:after {

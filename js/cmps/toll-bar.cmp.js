@@ -8,7 +8,7 @@ export default {
     template: `
         <section class="toolbar">
             <button class="remove-btn" @click="emitRemove">X</button>
-            <input type="text" class="text-input" @keyup.enter="emitChangeData">
+            <input type="text" placeholder="Edit" class="text-input" v-model="note.copydata" @keyup.enter="emitChangeData">
             <input class="color-input" @change="emitChangeColor" type="color"/>
             <button @click="emitTogglePin" :class="{ glow: note.isPinned }"><i class="fas fa-thumbtack"></i></button>    
         </section>

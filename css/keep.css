@@ -49,10 +49,11 @@
     padding: 7px;
     width: 350px;
     border: 1px solid #cfbcbcd7;
+    font-size: 1.3rem;
 }
 
 .note-add button{
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 /* .img-note img{
@@ -75,6 +76,7 @@
     padding: 7px;
     border-radius: 5px;
     border: 1px solid  #cfbcbcd7;
+    font-size: 1.3rem;
 }
 
 .marked {
@@ -95,6 +97,6 @@
     left: 0; */
     padding: 5px 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
