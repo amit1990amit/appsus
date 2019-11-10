@@ -54,7 +54,7 @@ function createNote(note){
     let defaultNote =  {
         id: makeId(7),
         isPinned: false,
-        color: note.color || "white"
+        color: note.color || "#EBCFB2"
     }
 
     note = {...note, ...defaultNote}

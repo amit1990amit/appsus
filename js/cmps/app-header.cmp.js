@@ -10,7 +10,7 @@ export default {
                 <img src="imgs/menu2-icon.png"/>
                 <nav  class="app-model flex wrap">
                     <router-link exact to="/email" class="fa fa-fw fa-envelope"></router-link>
-                    <router-link exact to="/keep"><i class="fas fa-edit"></i></router-link>
+                    <router-link exact to="/keep"><i class="fas fa-comment-alt"></i></router-link>
                 </nav>
             </button>
         </section>
