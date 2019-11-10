@@ -6,7 +6,7 @@ export default {
     name: 'email-list',
     props: ['emails'],
     template: `
-    <section class="email-list-container">
+    <section class="email-list-container flex">
         <ul class="clean-list flex wrap justify-center align-center">
             <email-preview v-for="currEmail in emails" :email="currEmail" @click.native="onSelectEmail(currEmail.id)" :key="currEmail.id">
             </email-preview>

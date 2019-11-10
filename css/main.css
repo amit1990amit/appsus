@@ -134,6 +134,9 @@ nav {
     transition: 0.3s 0s;
 }
 
+
+/*---home-page----*/
+
 .home-page-container {
     background-image: url("/imgs/home-page.jpg");
     height: 100vh;
@@ -150,25 +153,23 @@ nav {
     transform: translate(-50%, -50%);
 }
 
+
+/*---email----*/
+
+.email-app-container {
+    background-color: white;
+}
+
 .email-filter-container {
     background-color: rgba(255, 166, 0, 0.377);
     width: 100%;
-    padding: 40px;
-}
-
-.email-filter-container form {
-    position: relative;
+    padding: 20px;
 }
 
 .email-side-nav-container {
-    height: 100%;
     width: 200px;
-    position: fixed;
-    /* top: 0; */
-    /* left: 0; */
-    background-color: rgba(196, 192, 192, 0.274);
-    /* overflow-x: hidden; */
-    padding-top: 16px;
+    height: 500px;
+    padding-top: 20px;
 }
 
 .email-side-nav-container a {
@@ -185,6 +186,7 @@ nav {
 .compose-btn {
     padding: 10px;
     margin-bottom: 15px;
+    margin-left: 20px;
     width: 150px;
     border-radius: 50px;
     background: none;
@@ -193,7 +195,17 @@ nav {
 }
 
 .email-list-container {
-    border: 1px solid black;
+    flex-direction: column;
+    width: 600px;
+}
+
+.email-preview-container {
+    align-items: stretch;
+    width: 100%;
+}
+
+.email-preview-container>div {
+    text-align: center;
 }
 
 

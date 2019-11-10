@@ -1,7 +1,7 @@
 'use strict';
 
 import { storageService } from '../../../services/storage-service.js'
-import { makeId } from '../../../services/utils-service.js'
+// import { makeId } from '../../../services/utils-service.js'
 
 export const emailService = {
     getEmails,
@@ -102,15 +102,17 @@ function getEmailById(emailId) {
 
 var gEmails = [{
         "id": "OXeMG8wNskc",
-        "subject": " with Vue?",
-        "body": "May I",
+        "from": "Dor",
+        "subject": "Saying hello",
+        "body": "Hi, How are you?",
         "isRead": false,
         "sentAt": 1551133930594
     },
     {
         "id": "OXeMG8wNtjk",
-        "subject": "sadglkjdslgjasdgl?",
-        "body": "sadgsdagsdag",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": "Hi, 1. blablabla 2. blalala",
         "isRead": false,
         "sentAt": 1551133930596
     }
