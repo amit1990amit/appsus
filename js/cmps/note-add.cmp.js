@@ -33,10 +33,10 @@ export default {
     },
     computed: {
         shownPlaceholder() {
-            if (this.note.type === 'text-note') return `What's on your mind?`;
             if (this.note.type === 'img-note') return `Enter image URL`;
             if (this.note.type === 'video-note') return `Enter video URL`;
             if (this.note.type === 'todo-note') return `Enter comma separated list`;
+            else return `What's on your mind?`
         }
     },
     mounted() {
