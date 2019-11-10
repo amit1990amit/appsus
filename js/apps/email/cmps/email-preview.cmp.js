@@ -1,35 +1,25 @@
 'use strict';
 
+import '../cmps/long-text.cmp.js'
+
 export default {
     name: 'email-preview',
     props: ['email'],
     template: `
-        <section class="email-preview-container flex">
-            <div style="flex-grow: 1">
-                <h3>{{ email.from}}</h3>
-            </div>
-            <div style="flex-grow: 5">
-                <h1>{{ email.subject}}</h1>
-            </div>
-            <div style="flex-grow: 1">
-                <h3>{{ email.sentAt}}</h3>
-            </div>
-        
-        
-            <!-- <router-link :to="emailDetailsLink">
-                 
-            </router-link> -->
-        </section>
+            <router-link :to="emailDetailsLink" class="email-preview flex space-between align-center">
+                <p>{{ email.from}}</p>
+                <p>{{ email.subject}}- <long-text :txt="email.body"></long-text></p>
+                <p>{{toHoursFormat()}}</p>
+            </router-link>
     `,
+    methods: {
+        toHoursFormat() {
+            return Date(this.email.sentAt);
+        }
+    },
     computed: {
-        currencyIcon() {
-            let currencyCode = this.book.listPrice.currencyCode;
-            if (currencyCode === 'EUR') return '€';
-            if (currencyCode === 'ILS') return '₪';
-            if (currencyCode === 'USD') return '$';
-        },
-        bookDetailsLink() {
-            return `/book/${this.book.id}`
+        emailDetailsLink() {
+            return `/email/${this.email.id}`
         }
     }
 }

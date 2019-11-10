@@ -10,7 +10,7 @@ export const emailService = {
     // removeReview,
     // getSearchedBooks,
     // addToBooks,
-    // getNearBooksIds
+    getNearEmailsIds
 }
 
 const EMAILS_KEY = 'emails'
@@ -49,16 +49,16 @@ function getEmailById(emailId) {
 //     return Promise.resolve(book);
 // }
 
-// function getNearBooksIds(bookId) {
-//     var idx = gBooks.findIndex(book => book.id === bookId);
-//     var nextIdx = idx + 1;
-//     if (nextIdx === gBooks.length) nextIdx = 0;
-//     var next = gBooks[nextIdx].id;
-//     var prevIdx = idx - 1;
-//     if (prevIdx === -1) prevIdx = gBooks.length - 1;
-//     var prev = gBooks[prevIdx].id;
-//     return { prev, next };
-// }
+function getNearEmailsIds(emailId) {
+    let idx = gEmails.findIndex(email => email.id === emailId);
+    let nextIdx = idx + 1;
+    if (nextIdx === gEmails.length) nextIdx = 0;
+    let next = gEmails[nextIdx].id;
+    let prevIdx = idx - 1;
+    if (prevIdx === -1) prevIdx = gEmails.length - 1;
+    let prev = gEmails[prevIdx].id;
+    return { prev, next };
+}
 
 // function queryBooks(query) {
 // function getSearchedBooks(searched) {
@@ -68,7 +68,7 @@ function getEmailById(emailId) {
 //         })
 // }
 
-// function addToBooks(bookUrl) {
+// function addToEmails(emailUrl) {
 //     return axios.get(bookUrl)
 //         .then(res => {
 //             return res.data
@@ -113,6 +113,38 @@ var gEmails = [{
         "from": "Dor",
         "subject": "Assignments",
         "body": "Hi, 1. blablabla 2. blalala",
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtju",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": "Hi, 1. blablabla 2. blalala",
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjl",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": "Hi, 1. blablabla 2. blalala",
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjn",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": "Hi, 1. blablabla 2. blalala",
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": "Hi, 1. blablabla 2. blalalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "isRead": false,
         "sentAt": 1551133930596
     }

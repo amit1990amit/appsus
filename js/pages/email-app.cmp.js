@@ -4,13 +4,11 @@ import { emailService } from '../apps/email/services/email.service.js'
 import emailFilter from '../apps/email/cmps/email-filter.cmp.js'
 import emailSideNav from '../apps/email/cmps/email-side-nav.cmp.js'
 import emailList from '../apps/email/cmps/email-list.cmp.js'
-import emailMain from '../apps/email/cmps/email-list.cmp.js'
 
 export default {
     name: 'email-app',
     template: `
-        <section class="email-app-container flex wrap">
-            <!-- <email-details></email-details> -->
+        <section class="email-app-container">
             <!-- <email-status></email-status> -->
             <email-filter></email-filter>
             <email-side-nav></email-side-nav>
