@@ -28,7 +28,7 @@ export default {
             if(!this.filterBy) return this.notes;
             let regex = new RegExp(`${this.filterBy.data}`, 'i');
             return this.notes.filter(note => {
-                return regex.test(note.data)
+                return regex.test(note.copydata)
             })
         }
     },
