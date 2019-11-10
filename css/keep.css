@@ -51,6 +51,10 @@
     border: 1px solid #cfbcbcd7;
 }
 
+.note-add button{
+    font-size: 1.2rem;
+}
+
 /* .img-note img{
     width: 90%;
     margin: 10px 5% 0 5%;
@@ -84,4 +88,13 @@
 .toolbar{
     position: absolute;
     bottom: 10px;
+    background-color: #917c7c;
+    width: 95%;
+    margin: 0 auto;
+    /* position: absolute;
+    left: 0; */
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -6,10 +6,10 @@ export default {
     template:`
         <section class="note-add">
             <input type="text" :placeholder="shownPlaceholder" v-model="note.data" @keyup.enter="addNote"/>
-            <button @click="changeNoteType('text-note')">text</button>
-            <button @click="changeNoteType('img-note')">img</button>
+            <button @click="changeNoteType('text-note')"><i class="fas fa-font"></i></button>
+            <button @click="changeNoteType('img-note')"><i class="fas fa-image"></i></button>
             <button @click="changeNoteType('video-note')"><i class="fab fa-youtube"></i></button>
-            <button @click="changeNoteType('todo-note')">todo</button>
+            <button @click="changeNoteType('todo-note')"><i class="fas fa-list-ul"></i></button>
         </section>
     `,
     data() {

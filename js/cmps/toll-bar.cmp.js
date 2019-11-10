@@ -10,7 +10,7 @@ export default {
             <button class="remove-btn" @click="emitRemove">X</button>
             <input type="text" class="text-input" @keyup.enter="emitChangeData">
             <input class="color-input" @change="emitChangeColor" type="color"/>
-            <button @click="emitTogglePin" :class="{ glow: note.isPinned }">pin</button>    
+            <button @click="emitTogglePin" :class="{ glow: note.isPinned }"><i class="fas fa-thumbtack"></i></button>    
         </section>
     `,
     methods:{
