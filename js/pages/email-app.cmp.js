@@ -4,16 +4,19 @@ import { emailService } from '../apps/email/services/email.service.js'
 import emailFilter from '../apps/email/cmps/email-filter.cmp.js'
 import emailSideNav from '../apps/email/cmps/email-side-nav.cmp.js'
 import emailList from '../apps/email/cmps/email-list.cmp.js'
+import emailCompose from '../apps/email/cmps/email-compose.cmp.js'
 
 export default {
     name: 'email-app',
     template: `
         <section class="email-app-container">
             <!-- <email-status></email-status> -->
-            <email-filter></email-filter>
-            <email-side-nav></email-side-nav>
-            <email-list :emails="emailsToShow" @selected="selectEmail"></email-list>
-            <!-- <email-compose></email-compose> -->
+            <email-filter @filtered="setFilter"></email-filter>
+            <div class="row">
+                <email-side-nav @compose="toggleEmailList"></email-side-nav>
+                <email-compose v-if="this.composeClicked" @close="toggleEmailList"></email-compose>
+                <email-list v-if="!this.composeClicked" :emails="emailsToShow" @selected="selectEmail"></email-list>
+            </div>
         </section>
         
     `,
@@ -21,7 +24,8 @@ export default {
         return {
             emails: [],
             filterBy: null,
-            selectedEmail: null
+            selectedEmail: null,
+            composeClicked: false
         }
     },
     methods: {
@@ -34,16 +38,19 @@ export default {
         },
         hideDetails() {
             this.selectedEmail = null;
+        },
+        toggleEmailList() {
+            this.composeClicked = !this.composeClicked;
         }
     },
     computed: {
         emailsToShow() {
             if (!this.filterBy) return this.emails;
-            // let regex = new RegExp(`${this.filterBy.byName}`, 'i');
-            // return this.emails.filter(email => {
-            //     let emailIsRead = email.isRead;
-            //     return regex.test(email.subject) && emailIsRead > this.filterBy.fromPrice && bookPrice < this.filterBy.toPrice
-            // })
+            let regex = new RegExp(`${this.filterBy.bySubject}`, 'i');
+            return this.emails.filter(email => {
+                let emailIsRead = email.isRead;
+                return regex.test(email.subject)
+            })
         }
     },
     created() {
@@ -53,6 +60,7 @@ export default {
     components: {
         emailFilter,
         emailSideNav,
-        emailList
+        emailList,
+        emailCompose
     }
 }

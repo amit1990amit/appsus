@@ -31,14 +31,6 @@ export default {
             nearEmailsIds: null
         }
     },
-    computed: {
-        // readingLvl() {
-        //     let pages = this.book.pageCount;
-        //     if (pages > 500) return 'Long Reading';
-        //     else if (pages > 200) return 'Decent Reading';
-        //     else if (pages < 100) return 'Light Reading'
-        // }
-    },
     methods: {
         loadEmail() {
             this.emailId = this.$route.params.id;
@@ -51,7 +43,6 @@ export default {
     },
     created() {
         this.loadEmail();
-        window.scrollTo(0, 0);
     },
     watch: {
         '$route.params.id' () {

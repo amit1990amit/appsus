@@ -3,9 +3,9 @@
 export default {
     name: 'app-nav',
     template: `
-    <section class="app-header-container flex wrap space-between align-center">
-        <router-link class="logo" exact to="/">APPSUS</router-link>
-        <button class="app-navigation-btn" :class="classObject" @click="toggleNav"> 
+    <section class="app-nav-container">
+        <router-link class="logo fa fa-fw fa-home" exact to="/"></router-link>
+        <button class="app-nav-btn" :class="classObject" @click="toggleNav"> 
             <img src="imgs/menu2-icon.png"/>
             <nav class="flex wrap">
                 <router-link exact to="/email">email</router-link>

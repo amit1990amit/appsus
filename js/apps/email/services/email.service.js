@@ -1,16 +1,14 @@
 'use strict';
 
 import { storageService } from '../../../services/storage-service.js'
-// import { makeId } from '../../../services/utils-service.js'
+import { makeId } from '../../../services/utils-service.js'
 
 export const emailService = {
     getEmails,
     getEmailById,
-    // addReview,
-    // removeReview,
-    // getSearchedBooks,
-    // addToBooks,
-    getNearEmailsIds
+    getNearEmailsIds,
+    addEmail,
+    removeEmail
 }
 
 const EMAILS_KEY = 'emails'
@@ -31,24 +29,6 @@ function getEmailById(emailId) {
     return Promise.resolve(email);
 }
 
-// function addReview(bookId, review) {
-//     review.id = makeId();
-//     return getBookById(bookId)
-//         .then(book => {
-//             if (!book.reviews) book.reviews = [];
-//             book.reviews.unshift(review);
-//             storageService.store(BOOKS_KEY, gBooks)
-//             return Promise.resolve(book);
-//         })
-// }
-
-// function removeReview(book, reviewId) {
-//     var idx = book.reviews.findIndex(review => review.id === reviewId);
-//     if (idx !== -1) book.reviews.splice(idx, 1)
-//     storageService.store(BOOKS_KEY, gBooks)
-//     return Promise.resolve(book);
-// }
-
 function getNearEmailsIds(emailId) {
     let idx = gEmails.findIndex(email => email.id === emailId);
     let nextIdx = idx + 1;
@@ -60,49 +40,46 @@ function getNearEmailsIds(emailId) {
     return { prev, next };
 }
 
-// function queryBooks(query) {
-// function getSearchedBooks(searched) {
-//     return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searched}&key=AIzaSyCw8djD1Hif_FagSIHuaLdcPXB-KgWGiiw`)
-//         .then(res => {
-//             return res.data.items
-//         })
-// }
+function addEmail(email) {
+    let newEmail = createEmail(email);
+    gEmails.unshift(newEmail);
+    storageService.saveToStorage(EMAILS_KEY, gEmails);
+}
 
-// function addToEmails(emailUrl) {
-//     return axios.get(bookUrl)
-//         .then(res => {
-//             return res.data
-//         })
-//         .then(book => {
-//             return {
-//                 "id": book.id,
-//                 "title": book.volumeInfo.title,
-//                 "subtitle": book.volumeInfo.subtitle,
-//                 "authors": book.volumeInfo.authors,
-//                 "publishedDate": book.volumeInfo.publishedDate,
-//                 "description": book.volumeInfo.description,
-//                 "pageCount": book.volumeInfo.pageCount,
-//                 "categories": book.volumeInfo.categories,
-//                 "thumbnail": book.volumeInfo.imageLinks.thumbnail,
-//                 "language": book.volumeInfo.language,
-//                 "listPrice": book.saleInfo.listPrice
-//             }
-//         })
-//         .then(addedBook => {
-//             if (!addedBook.saleInfo) addedBook.listPrice = {
-//                 "amount": 109,
-//                 "currencyCode": "EUR",
-//                 "isOnSale": true
-//             }
-//             gBooks.unshift(addedBook)
-//             storageService.store(BOOKS_KEY, gBooks)
-//             return addedBook;
-//         })
+function removeEmail(emailId) {
+    var idx = gEmails.findIndex(email => email.id === emailId);
+    if (idx !== -1) gEmails.splice(idx, 1);
+    storageService.saveToStorage(EMAILS_KEY, gEmails);
+    return Promise.resolve();
+}
+
+// function createEmail(email) {
+//     let defaultNote = {
+//         id: makeId(7),
+//         isPinned: false,
+//         color: note.color || "#EBCFB2"
+//     }
+
+//     note = {...note, ...defaultNote }
+//     note.copydata = note.data
+//     if (note.type === 'todo-note') {
+//         if (typeof(note.data) === typeof("string")) {
+//             let todos = note.data.split(', ');
+//             let fullTodos = todos.map(todo => ({ txt: todo, isDone: false, id: makeId(7) }))
+//             note.data = fullTodos
+//         }
+//     }
+//     if (note.type === 'video-note') {
+//         let videoId = note.data.split('=')[1];
+//         note.data = 'https://www.youtube.com/embed/' + videoId;
+//     }
+
+//     return note;
 // }
 
 var gEmails = [{
         "id": "OXeMG8wNskc",
-        "from": "Dor",
+        "from": "dortzabari@gmail.com",
         "subject": "Saying hello",
         "body": "Hi, How are you?",
         "isRead": true,
@@ -117,26 +94,13 @@ var gEmails = [{
         "sentAt": 1551133930596
     },
     {
-        "id": "OXeMG8wNtju",
+        "id": "OXeMG8wNtjf",
         "from": "Dor",
         "subject": "Assignments",
-        "body": "Hi, 1. blablabla 2. blalala",
-        "isRead": false,
-        "sentAt": 1551133930596
-    },
-    {
-        "id": "OXeMG8wNtjl",
-        "from": "Dor",
-        "subject": "Assignments",
-        "body": "Hi, 1. blablabla 2. blalala",
-        "isRead": false,
-        "sentAt": 1551133930596
-    },
-    {
-        "id": "OXeMG8wNtjn",
-        "from": "Dor",
-        "subject": "Assignments",
-        "body": "Hi, 1. blablabla 2. blalala",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
         "isRead": false,
         "sentAt": 1551133930596
     },
@@ -144,7 +108,164 @@ var gEmails = [{
         "id": "OXeMG8wNtjf",
         "from": "Dor",
         "subject": "Assignments",
-        "body": "Hi, 1. blablabla 2. blalalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
+        "isRead": false,
+        "sentAt": 1551133930596
+    },
+    {
+        "id": "OXeMG8wNtjf",
+        "from": "Dor",
+        "subject": "Assignments",
+        "body": `"Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+        Consequuntur officiis aut, quasi ab quia dolorem quisquam, 
+        sed repellendus eaque dolore ex debitis. 
+        Quod eligendi cupiditate natus eos architecto eaque exercitationem!"`,
         "isRead": false,
         "sentAt": 1551133930596
     }

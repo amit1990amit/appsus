@@ -1,0 +1,88 @@
+.app-nav-container {
+    padding: 15px;
+    position: absolute;
+    left: 90%;
+    transform: translate(-40%, 0);
+}
+
+.logo {
+    font-size: 20px;
+    color: black;
+}
+
+.app-nav-btn {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.app-nav-btn img {
+    width: 40px;
+}
+
+.app-nav-btn:after {
+    content: " ";
+    position: absolute;
+    top: 80%;
+    transform: translate(-50%);
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid white;
+    transition: 0.3s 0s;
+}
+
+.app-nav-btn.clicked:after {
+    border-width: 0px;
+    transition: 0.3s 0.2s;
+}
+
+nav {
+    position: absolute;
+    top: calc(85% + 10px);
+    transform: translateX(-80%);
+    width: 250px;
+    height: 300px;
+    transition: 0.3s 0.3s;
+    font-size: 0;
+    background: white;
+    box-shadow: 5px 10px 18px #888888;
+}
+
+.app-nav-btn.clicked nav {
+    height: 0px;
+    transition: 0.3s 0s;
+}
+
+.app-nav-btn a {
+    width: 70px;
+    height: 70px;
+    font-size: initial;
+    transition: 0.3s 0.1s;
+    text-align: center;
+}
+
+.app-nav-btn.clicked nav a {
+    font-size: 0;
+    transition: 0.3s 0s;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/* @media screen and (max-width: 600px) {
+    .column.side,
+    .column.middle {
+        width: 100%;
+    }
+} */
+
+
+/* .app-model {
+    position: fixed;
+    top: 50px;
+} */

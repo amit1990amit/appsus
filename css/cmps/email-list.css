@@ -1,0 +1,6 @@
+.email-list-container {
+    margin-left: 200px;
+    background-color: rgba(242, 245, 245, 0.8);
+    flex-direction: column;
+    cursor: pointer;
+}

@@ -9,11 +9,11 @@ export default {
             <router-link :to="emailDetailsLink" class="email-preview flex space-between align-center" :class="classObject" @click.native="emailClicked">
                 <p>{{ email.from}}</p>
                 <p>{{ email.subject}}- <long-text :txt="email.body"></long-text></p>
-                <p>{{toHoursFormat()}}</p>
+                <p>{{toTimeFormat()}}</p>
             </router-link>
     `,
     methods: {
-        toHoursFormat() {
+        toTimeFormat() {
             return Date(this.email.sentAt);
         },
         emailClicked() {
